@@ -1,0 +1,1282 @@
+#LyX 2.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 544
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass article
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\use_microtype false
+\use_dash_ligatures true
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\float_placement H
+\paperfontsize 10
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry true
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\use_minted 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\leftmargin 1cm
+\rightmargin 1cm
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\is_math_indent 0
+\math_numbering_side default
+\quotes_style english
+\dynamic_quotes 0
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+EE6133 : Multirate Digital Signal Processing
+\end_layout
+
+\begin_layout Title
+Experiment - 1
+\end_layout
+
+\begin_layout Author
+Manomukil T - EE20B075
+\end_layout
+
+\begin_layout Date
+7
+\begin_inset script superscript
+
+\begin_layout Plain Layout
+th 
+\end_layout
+
+\end_inset
+
+October 2022
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset toc
+LatexCommand tableofcontents
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Part 1:
+\end_layout
+
+\begin_layout Quote
+Downsample each audio signal by 2 without any AA filtering.
+ Play back using the new sampling rate.
+\end_layout
+
+\begin_layout Subsection
+Code:
+\end_layout
+
+\begin_layout Verbatim
+
+%% Magnitude response of both the signals 
+\end_layout
+
+\begin_layout Verbatim
+
+\end_layout
+
+\begin_layout Verbatim
+
+music_amplitude = abs(fft(music_array)); 
+\end_layout
+
+\begin_layout Verbatim
+
+speech_amplitude = abs(fft(speech_array));
+\end_layout
+
+\begin_layout Verbatim
+
+\end_layout
+
+\begin_layout Verbatim
+
+% Generating all the frequencies
+\end_layout
+
+\begin_layout Verbatim
+
+music_frequency = transpose((0:length(music_amplitude)-1)*music_fs/length(music_
+amplitude)); 
+\end_layout
+
+\begin_layout Verbatim
+
+speech_frequency = t/transpose((0:length(speech_amplitude)-1)*speech_fs/length(s
+peech_amplitude)); 
+\end_layout
+
+\begin_layout Verbatim
+
+\end_layout
+
+\begin_layout Verbatim
+
+%% Downsample by 2
+\end_layout
+
+\begin_layout Verbatim
+
+music_ds_array = downsample(music_array,2); speech_ds_array = downsample(speech_
+array,2);
+\end_layout
+
+\begin_layout Verbatim
+
+\end_layout
+
+\begin_layout Verbatim
+
+% Fourier transform of both the signals
+\end_layout
+
+\begin_layout Verbatim
+
+music_ds_amplitude = abs(fft(music_ds_array)); speech_ds_amplitude = abs(fft(spe
+ech_ds_array));
+\end_layout
+
+\begin_layout Subsection
+Plots:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename C:/Users/Manomukil T/Desktop/Multirate DSP Assignment - Matlab/Plots/Comparison_Music_ds.png
+	scale 35
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Original Signal vs Filtered Signal of the Music Audio File
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename C:/Users/Manomukil T/Desktop/Multirate DSP Assignment - Matlab/Plots/Comparison_Speech_ds.png
+	lyxscale 45
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Original Signal vs Filtered Signal of the Speech Audio File
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Result
+\end_layout
+
+\begin_layout Standard
+The signal becomes worse after being passed through the downsampler.
+ This occurs due to aliasing.
+\end_layout
+
+\begin_layout Section
+Part 2
+\end_layout
+
+\begin_layout Quote
+Design an equiripple LPF with ωp = 0.45π and ωs = 0.55π, with appropriate
+ values for δp and δs.
+ Using this as an AA filter, downsample each audio signal by 2.
+ Playback using the 1 new sampling rate.
+ Compare the two downsampled signals (with and without AA filtering) for
+ each audio input.
+\end_layout
+
+\begin_layout Subsection
+Code
+\end_layout
+
+\begin_layout Verbatim
+
+%% Design Filter
+\end_layout
+
+\begin_layout Verbatim
+
+Hd = fdesign.lowpass('Fp,Fst',0.45,0.55); 
+\end_layout
+
+\begin_layout Verbatim
+
+d = design(Hd,'equiripple');
+\end_layout
+
+\begin_layout Verbatim
+
+\end_layout
+
+\begin_layout Verbatim
+
+%Plot the Magnitude Response of the Filter 
+\end_layout
+
+\begin_layout Verbatim
+
+fvtool(d); 
+\end_layout
+
+\begin_layout Verbatim
+
+\end_layout
+
+\begin_layout Verbatim
+
+%Pass the signals through the AA Filter 
+\end_layout
+
+\begin_layout Verbatim
+
+music_AA_array = filter(d,music_array); 
+\end_layout
+
+\begin_layout Verbatim
+
+speech_AA_array = filter(d,speech_array);
+\end_layout
+
+\begin_layout Verbatim
+
+\end_layout
+
+\begin_layout Verbatim
+
+%Downsample the signals 
+\end_layout
+
+\begin_layout Verbatim
+
+music_AA_ds_array = downsample(music_array,2); 
+\end_layout
+
+\begin_layout Verbatim
+
+speech_AA_dsarray = downsample(speech_array,2);
+\end_layout
+
+\begin_layout Verbatim
+
+\end_layout
+
+\begin_layout Verbatim
+
+%Apply Fourier transform 
+\end_layout
+
+\begin_layout Verbatim
+
+music_AA_ds_amplitude = abs(fft(music_AA_ds_array)); speech_AA_ds_amplitude
+ = abs(fft(speech_AA_dsarray)); 
+\end_layout
+
+\begin_layout Verbatim
+
+\end_layout
+
+\begin_layout Subsection
+
+Plots
+\end_layout
+
+\begin_layout Standard
+\align center
+
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename C:/Users/Manomukil T/Desktop/Multirate DSP Assignment - Matlab/Plots/Filter MagnitudeResponse.png
+	lyxscale 25
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+Magnitude Response of Equiripple LPF
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename C:/Users/Manomukil T/Desktop/Multirate DSP Assignment - Matlab/Plots/Comparison_Music_AA_ds.png
+	lyxscale 45
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Original vs Filtered Response of Music Audio Signal
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename C:/Users/Manomukil T/Desktop/Multirate DSP Assignment - Matlab/Plots/Comparison_Speech_AA_ds.png
+	lyxscale 45
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Original vs Filtered Response of Speech Audio Signal
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Result
+\end_layout
+
+\begin_layout Standard
+We have implemented the low pass filter as shown in Figure 3, such that
+ we have suppressed the high frequency components.as shown in Figures 4 and
+ 5.
+\end_layout
+
+\begin_layout Section
+Part 3
+\end_layout
+
+\begin_layout Subsection
+Code
+\end_layout
+
+\begin_layout Verbatim
+
+Hd2 = fdesign.lowpass('Fp,Fst',0.22,0.28); 
+\end_layout
+
+\begin_layout Verbatim
+
+d2 = design(Hd2,'equiripple'); 
+\end_layout
+
+\begin_layout Verbatim
+
+\end_layout
+
+\begin_layout Subsection
+Plots
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename C:/Users/Manomukil T/Desktop/Multirate DSP Assignment - Matlab/Plots/Filter2MagnitudeResponse.png
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Magnitude Response of the Equiripple Low Pass Filter
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Result
+\end_layout
+
+\begin_layout Standard
+The filter has been designed for ω
+\begin_inset script subscript
+
+\begin_layout Plain Layout
+p
+\end_layout
+
+\end_inset
+
+ = 0.22π and ω
+\begin_inset script subscript
+
+\begin_layout Plain Layout
+s
+\end_layout
+
+\end_inset
+
+ = 0.28π.
+ Thus we have a filter with a cutoff frequency of π/4.
+\end_layout
+
+\begin_layout Section
+Part 4
+\end_layout
+
+\begin_layout Quote
+First upsample each original audio signal by 3.
+ Then apply the LPF with cutoff -π/4 designed above, and downsample by 4.
+ Play the re-sampled outputs using the new sampling rate.
+ Compare these outputs with the originals.
+\end_layout
+
+\begin_layout Subsection
+Code
+\end_layout
+
+\begin_layout Standard
+%Upsampling by 3
+\end_layout
+
+\begin_layout Standard
+music_us_array = upsample(music_array,3); 
+\end_layout
+
+\begin_layout Standard
+speech_us_array = upsample(speech_array,3);
+\end_layout
+
+\begin_layout Standard
+music_us_amplitude = abs(fft(music_us_array)); 
+\end_layout
+
+\begin_layout Standard
+speech_us_amplitude = abs(fft(speech_us_array));
+\end_layout
+
+\begin_layout Standard
+%Passing the array through AA 
+\end_layout
+
+\begin_layout Standard
+filter music_us_AA_array = filter(d2,music_us_array);
+\end_layout
+
+\begin_layout Standard
+speech_us_AA_array = filter(d2,speech_us_array);
+\end_layout
+
+\begin_layout Standard
+%Downsampling by 4 
+\end_layout
+
+\begin_layout Standard
+music_us_AA_ds_array = downsample(music_us_AA_array,4); 
+\end_layout
+
+\begin_layout Standard
+speech_us_AA_ds_array = downsample(speech_us_AA_array,4);
+\end_layout
+
+\begin_layout Standard
+%Converting to get Magnitude Response 
+\end_layout
+
+\begin_layout Standard
+music_us_AA_ds_amplitude = abs(fft(music_us_AA_ds_array)); 
+\end_layout
+
+\begin_layout Standard
+speech_us_AA_ds_amplitude = abs(fft(speech_us_AA_ds_array));
+\end_layout
+
+\begin_layout Standard
+music_us_fs = music_fs*3; 
+\end_layout
+
+\begin_layout Standard
+speech_us_fs = speech_fs*3;
+\end_layout
+
+\begin_layout Standard
+music_us_ds_fs = music_us_fs/4; 
+\end_layout
+
+\begin_layout Standard
+speech_us_ds_fs = speech_us_fs/4;
+\end_layout
+
+\begin_layout Subsection
+Plots
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename C:/Users/Manomukil T/Desktop/Multirate DSP Assignment - Matlab/Plots/Music_16Khz_us_MagnitudeResponse.png
+	scale 60
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Upsampled Music Signal
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename C:/Users/Manomukil T/Desktop/Multirate DSP Assignment - Matlab/Plots/Speech_8Khz_MagnitudeResponse_us.png
+	scale 55
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Upsampled Speech Signal
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename C:/Users/Manomukil T/Desktop/Multirate DSP Assignment - Matlab/Plots/Comparison_Music_us_AA_ds.png
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Original vs Filtered Music Signal
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename C:/Users/Manomukil T/Desktop/Multirate DSP Assignment - Matlab/Plots/Comparison_Speech_us_AA_ds.png
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Original vs Filtered Speech Signal
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Result
+\end_layout
+
+\begin_layout Standard
+We can see 3 images and in both Figures 9 and 10 .
+ The higher frequency components has been eliminated using the AA filter.
+ Now the images are the cause for the deterioration in quality.
+\end_layout
+
+\begin_layout Section
+Part 5
+\end_layout
+
+\begin_layout Quote
+First filter each audio original signal with the LPF designed above, and
+ downsample by 4.
+ Then upsample by 3.
+ Finally, interpolate each upsampled signal using an interpolation filter
+ for L = 3 with support [−8, 8] designed by any method (including windowing).
+ (If you use ”intfilt” of Matlab, set α = 1.) Play these outputs and compare
+ them with those of the previous part
+\end_layout
+
+\begin_layout Subsection
+Code
+\end_layout
+
+\begin_layout Verbatim
+
+%Interpolation Filter Design 
+\end_layout
+
+\begin_layout Verbatim
+
+h1 = intfilt(3,3,1);
+\end_layout
+
+\begin_layout Verbatim
+
+n_imp = linspace(-8,8,length(h1)); 
+\end_layout
+
+\begin_layout Verbatim
+
+h1_mag = fftshift(fft(h1),17); 
+\end_layout
+
+\begin_layout Verbatim
+
+\end_layout
+
+\begin_layout Verbatim
+
+%Filter using the LPF music_AA_array = filter(d2,music_array); 
+\end_layout
+
+\begin_layout Verbatim
+
+speech_AA_array = filter(d2,speech_array);
+\end_layout
+
+\begin_layout Verbatim
+
+\end_layout
+
+\begin_layout Verbatim
+
+%Downsample by 4 
+\end_layout
+
+\begin_layout Verbatim
+
+music_AA_ds_array = downsample(music_AA_array,4);
+\end_layout
+
+\begin_layout Verbatim
+
+speech_AA_ds_array = downsample(speech_AA_array,4);
+\end_layout
+
+\begin_layout Verbatim
+
+\end_layout
+
+\begin_layout Verbatim
+
+%Upsample by 4 
+\end_layout
+
+\begin_layout Verbatim
+
+\end_layout
+
+\begin_layout Verbatim
+
+music_AA_ds_us_array = upsample(music_AA_ds_array,3); 
+\end_layout
+
+\begin_layout Verbatim
+
+speech_AA_ds_us_array = upsample(speech_AA_ds_array,3);
+\end_layout
+
+\begin_layout Verbatim
+
+\end_layout
+
+\begin_layout Verbatim
+
+%Filter using Interpolation Filter 
+\end_layout
+
+\begin_layout Verbatim
+
+\end_layout
+
+\begin_layout Verbatim
+
+music_AA_ds_us_int_array = filter(h1,1,music_AA_ds_us_array); 
+\end_layout
+
+\begin_layout Verbatim
+
+speech_AA_ds_us_int_array = filter(h1,1,speech_AA_ds_us_array);
+\end_layout
+
+\begin_layout Verbatim
+
+\end_layout
+
+\begin_layout Verbatim
+
+%Apply Fourier Transform 
+\end_layout
+
+\begin_layout Verbatim
+
+\end_layout
+
+\begin_layout Verbatim
+
+music_AA_ds_us_amplitude = abs(fft(music_AA_ds_us_array)); 
+\end_layout
+
+\begin_layout Verbatim
+
+speech_AA_ds_us_amplitude = abs(fft(speech_AA_ds_us_array));
+\end_layout
+
+\begin_layout Verbatim
+
+\end_layout
+
+\begin_layout Verbatim
+
+music_AA_ds_us_int_amplitude = abs(fft(music_AA_ds_us_int_array)); 
+\end_layout
+
+\begin_layout Verbatim
+
+speech_AA_ds_us_int_amplitude = abs(fft(speech_AA_ds_us_int_array));
+\end_layout
+
+\begin_layout Verbatim
+
+\end_layout
+
+\begin_layout Subsection
+Plots
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename C:/Users/Manomukil T/Desktop/Multirate DSP Assignment - Matlab/Plots/Interpolation_Filter_MagnitudeResponse.png
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Magnitude Response of Interpolation Filter
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename C:/Users/Manomukil T/Desktop/Multirate DSP Assignment - Matlab/Plots/Interpolation_Filter_ImpulseResponse.png
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Impulse Response of Interpolation Filter
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename C:/Users/Manomukil T/Desktop/Multirate DSP Assignment - Matlab/Plots/Comparison_Music_AA_ds_us.png
+	scale 50
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Original vs Filtered Music Signal
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename C:/Users/Manomukil T/Desktop/Multirate DSP Assignment - Matlab/Plots/Comparison_Speech_AA_ds_us.png
+	scale 30
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Original vs Filtered Speech Signal
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename C:/Users/Manomukil T/Desktop/Multirate DSP Assignment - Matlab/Plots/Comparison_Music_AA_ds_us_int.png
+	scale 35
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Original vs Filtered Music Signal With Interpolation Filter
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename C:/Users/Manomukil T/Desktop/Multirate DSP Assignment - Matlab/Plots/Comparison_Speech_AA_ds_us_int.png
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Original vs Filtered Music Signal With Interpolation Filter
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename C:/Users/Manomukil T/Desktop/Multirate DSP Assignment - Matlab/Plots/Comparison_Music_4_5.png
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Comparison of Music Signal with and without Interpolation 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename C:/Users/Manomukil T/Desktop/Multirate DSP Assignment - Matlab/Plots/Speech_Music_4_5.png
+	scale 40
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Comparison of Speech Signal with and without Interpolation
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Result
+\end_layout
+
+\begin_layout Standard
+In Figures 17 and 18, using the Interpolation filter, we eliminate the images
+ that were seen in Figures 13 and 14 as shown , thus implying the effectiveness
+ of the Interpolation Filter in improving the quality of the signal compared
+ to the previous section.
+\end_layout
+
+\end_body
+\end_document
